@@ -18,7 +18,7 @@ describe Mission, type: :model do
 
       expected = [bagel, zombieland]
 
-      expect(Mission.order_by_name).to eq(expected)
+      expect(Mission.order_by_title).to eq(expected)
     end
   end
 end

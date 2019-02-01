@@ -48,11 +48,11 @@ describe 'When I visit /astronauts' do
 
       visit astronauts_path
 
-      within("#astronaut-#{tim.id}") do
-        expect(page).to have_content("Missions: #{bagel.title}\n#{zombieland.title}")
-      end
       within("#astronaut-#{jim.id}") do
-        expect(page).to have_content("Misssions: #{bagel.title}")
+        expect(page).to have_content("Missions:\n#{bagel.title}\n#{zombieland.title}")
+      end
+      within("#astronaut-#{tim.id}") do
+        expect(page).to have_content("Missions:\n#{bagel.title}")
       end
     end
   end

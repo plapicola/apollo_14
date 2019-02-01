@@ -38,5 +38,22 @@ describe 'When I visit /astronauts' do
         expect(page).to have_content("Average Age: #{average_age}")
       end
     end
+
+    it "I see a list of all missions for each astronaut in alphabetical order" do
+      tim = Astronaut.create(name: "Tim", age: 29, job: "Commander")
+      jim = Astronaut.create(name: "Jim", age: 50, job: "Navigator")
+      zombieland = jim.missions.create(title: "Zombieland", time_in_space: "902")
+      bagel = jim.missions.create(title: "Bagel", time_in_space: "490")
+      tim.missions << bagel
+
+      visit astronauts_path
+
+      within("#astronaut-#{tim.id}") do
+        expect(page).to have_content("Missions: #{bagel.title}\n#{zombieland.title}")
+      end
+      within("#astronaut-#{jim.id}") do
+        expect(page).to have_content("Misssions: #{bagel.title}")
+      end
+    end
   end
 end

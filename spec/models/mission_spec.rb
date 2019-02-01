@@ -10,4 +10,15 @@ describe Mission, type: :model do
     it { should have_many :astronaut_missions}
     it { should have_many :astronauts}
   end
+
+  describe 'class methods' do
+    it "should be able to order by title" do
+      zombieland = Mission.create(title: "Zombieland", time_in_space: "902")
+      bagel = Mission.create(title: "Bagel", time_in_space: "490")
+
+      expected = [bagel, zombieland]
+
+      expect(Mission.order_by_title).to eq(expected)
+    end
+  end
 end

@@ -8,7 +8,7 @@ describe 'When I visit /astronauts' do
 
       visit astronauts_path
 
-      within("astronaut-<%= tim.id %>") do
+      within("astronaut-#{tim.id}") do
         expect(page).to have_content("Name: #{tim.name}")
         expect(page).to have_content("Age: #{tim.age}")
         expect(page).to have_content("Job: #{tim.job}")
@@ -16,7 +16,7 @@ describe 'When I visit /astronauts' do
         expect(page).to_not have_content("Age: #{jim.age}")
         expect(page).to_not have_content("Job: #{jim.job}")
       end
-      within("astronaut-<%= jim.id %>") do
+      within("astronaut-#{jim.id}") do
         expect(page).to have_content("Name: #{jim.name}")
         expect(page).to have_content("Age: #{jim.age}")
         expect(page).to have_content("Job: #{jim.job}")

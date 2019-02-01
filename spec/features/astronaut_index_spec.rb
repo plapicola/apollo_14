@@ -6,7 +6,7 @@ describe 'When I visit /astronauts' do
       tim = Astronaut.create(name: "Tim", age: 29, job: "Commander")
       jim = Astronaut.create(name: "Jim", age: 50, job: "Navigator")
 
-      visit astronaut_path
+      visit astronauts_path
 
       within("astronaut-<%= tim.id %>") do
         expect(page).to have_content("Name: #{tim.name}")

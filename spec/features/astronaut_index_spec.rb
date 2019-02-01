@@ -25,5 +25,18 @@ describe 'When I visit /astronauts' do
         expect(page).to_not have_content("Job: #{tim.job}")
       end
     end
+
+    it "I see a list of all astronauts with their name, age, and job" do
+      tim = Astronaut.create(name: "Tim", age: 29, job: "Commander")
+      jim = Astronaut.create(name: "Jim", age: 50, job: "Navigator")
+
+      average_age = (jim.age + tim.age) / 2.0
+
+      visit astronauts_path
+
+      within('.statistics') do
+        expect(page).to have_content("Average Age: #{average_age}")
+      end
+    end
   end
 end
